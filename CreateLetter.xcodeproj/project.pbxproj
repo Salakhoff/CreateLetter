@@ -18,6 +18,9 @@
 		17DC24992ACAD0F300997318 /* FontSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24982ACAD0F300997318 /* FontSizeSlider.swift */; };
 		17DC249E2ACB1AB000997318 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC249D2ACB1AB000997318 /* SettingsTextField.swift */; };
 		17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC249F2ACB21F100997318 /* LetterTextView.swift */; };
+		17DC24A22ACB25AA00997318 /* DarkLightSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */; };
+		17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */; };
+		17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A72ACB2C3F00997318 /* FontThickness.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		17DC24982ACAD0F300997318 /* FontSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeSlider.swift; sourceTree = "<group>"; };
 		17DC249D2ACB1AB000997318 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		17DC249F2ACB21F100997318 /* LetterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterTextView.swift; sourceTree = "<group>"; };
+		17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightSwitch.swift; sourceTree = "<group>"; };
+		17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThicknessSegmentedControl.swift; sourceTree = "<group>"; };
+		17DC24A72ACB2C3F00997318 /* FontThickness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThickness.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				17DC248F2ACACCBB00997318 /* App */,
+				17DC24A62ACB2C2E00997318 /* Models */,
 				17DC24952ACAD03700997318 /* Views */,
 				17DC24902ACACCC400997318 /* Controllers */,
 			);
@@ -102,8 +109,18 @@
 				17DC24982ACAD0F300997318 /* FontSizeSlider.swift */,
 				17DC249D2ACB1AB000997318 /* SettingsTextField.swift */,
 				17DC249F2ACB21F100997318 /* LetterTextView.swift */,
+				17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */,
+				17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		17DC24A62ACB2C2E00997318 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				17DC24A72ACB2C3F00997318 /* FontThickness.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,13 +194,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DC24992ACAD0F300997318 /* FontSizeSlider.swift in Sources */,
+				17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */,
 				17DC24802ACACAB100997318 /* LetterViewController.swift in Sources */,
 				17DC24922ACACCFF00997318 /* TabBarController.swift in Sources */,
 				17DC247C2ACACAB100997318 /* AppDelegate.swift in Sources */,
 				17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */,
+				17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */,
 				17DC249E2ACB1AB000997318 /* SettingsTextField.swift in Sources */,
 				17DC24972ACAD05300997318 /* DescriptionLabel.swift in Sources */,
 				17DC24942ACACDA400997318 /* SettingsViewController.swift in Sources */,
+				17DC24A22ACB25AA00997318 /* DarkLightSwitch.swift in Sources */,
 				17DC247E2ACACAB100997318 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
