@@ -17,6 +17,7 @@
 		17DC24972ACAD05300997318 /* DescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24962ACAD05300997318 /* DescriptionLabel.swift */; };
 		17DC24992ACAD0F300997318 /* FontSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24982ACAD0F300997318 /* FontSizeSlider.swift */; };
 		17DC249E2ACB1AB000997318 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC249D2ACB1AB000997318 /* SettingsTextField.swift */; };
+		17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC249F2ACB21F100997318 /* LetterTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		17DC24962ACAD05300997318 /* DescriptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
 		17DC24982ACAD0F300997318 /* FontSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeSlider.swift; sourceTree = "<group>"; };
 		17DC249D2ACB1AB000997318 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
+		17DC249F2ACB21F100997318 /* LetterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				17DC24962ACAD05300997318 /* DescriptionLabel.swift */,
 				17DC24982ACAD0F300997318 /* FontSizeSlider.swift */,
 				17DC249D2ACB1AB000997318 /* SettingsTextField.swift */,
+				17DC249F2ACB21F100997318 /* LetterTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				17DC24802ACACAB100997318 /* LetterViewController.swift in Sources */,
 				17DC24922ACACCFF00997318 /* TabBarController.swift in Sources */,
 				17DC247C2ACACAB100997318 /* AppDelegate.swift in Sources */,
+				17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */,
 				17DC249E2ACB1AB000997318 /* SettingsTextField.swift in Sources */,
 				17DC24972ACAD05300997318 /* DescriptionLabel.swift in Sources */,
 				17DC24942ACACDA400997318 /* SettingsViewController.swift in Sources */,
