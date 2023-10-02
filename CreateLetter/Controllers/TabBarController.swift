@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +15,9 @@ class TabBarController: UITabBarController {
     }
 }
 
-extension TabBarController {
-    private func setupTabBar() {
+// MARK: -Setup TabBar
+private extension TabBarController {
+    func setupTabBar() {
         let letterVC = LetterViewController()
         let settingsVC = SettingsViewController()
         

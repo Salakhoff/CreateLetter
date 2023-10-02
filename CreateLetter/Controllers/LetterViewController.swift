@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LetterViewController: UIViewController {
+final class LetterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
