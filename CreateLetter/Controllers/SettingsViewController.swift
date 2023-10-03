@@ -33,21 +33,22 @@ final class SettingsViewController: UIViewController {
     private lazy var settingsDarkLightSwitch = DarkLightSwitch()
     
     private lazy var colorPickerView = UIPickerView()
+    private lazy var fontPickerView = UIPickerView()
     
     private lazy var textFieldToolbar: UIToolbar = {
-         let toolbar = UIToolbar()
-         toolbar.barStyle = .default
-         toolbar.isTranslucent = true
-         toolbar.sizeToFit()
-         
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        
         let cancelButton = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(okButtonTapped))
-         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-         
-         toolbar.setItems([flexibleSpace, cancelButton], animated: false)
-         toolbar.isUserInteractionEnabled = true
-         
-         return toolbar
-     }()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([flexibleSpace, cancelButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        return toolbar
+    }()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -61,6 +62,8 @@ final class SettingsViewController: UIViewController {
     @objc private func okButtonTapped() {
         if colorTextField.isEditing {
             colorTextField.resignFirstResponder()
+        } else if fontTextField.isEditing {
+            fontTextField.resignFirstResponder()
         }
     }
 }
@@ -89,6 +92,9 @@ private extension SettingsViewController {
         
         colorTextField.inputView = colorPickerView
         colorTextField.inputAccessoryView = textFieldToolbar
+        
+        fontTextField.inputView = fontPickerView
+        fontTextField.inputAccessoryView = textFieldToolbar
     }
     
     func setConstraints() {
@@ -146,6 +152,9 @@ private extension SettingsViewController {
     func setDelegate() {
         colorPickerView.delegate = self
         colorPickerView.dataSource = self
+        
+        fontPickerView.delegate = self
+        fontPickerView.dataSource = self
     }
 }
 
@@ -159,6 +168,7 @@ extension SettingsViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case colorPickerView: TextColor.allCases.count
+        case fontPickerView: UIFont.familyNames.count
         default: 0
         }
     }
@@ -169,6 +179,7 @@ extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case colorPickerView: TextColor.allCases[row].rawValue
+        case fontPickerView: UIFont.familyNames[row]
         default: ""
         }
     }
@@ -176,6 +187,7 @@ extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case colorPickerView: self.colorTextField.text = TextColor.allCases[row].rawValue
+        case fontPickerView: self.fontTextField.text = UIFont.familyNames[row]
         default: break
         }
     }
