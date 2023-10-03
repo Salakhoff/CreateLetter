@@ -21,6 +21,7 @@
 		17DC24A22ACB25AA00997318 /* DarkLightSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */; };
 		17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */; };
 		17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A72ACB2C3F00997318 /* FontThickness.swift */; };
+		17DC24AA2ACBDCFF00997318 /* TextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A92ACBDCFF00997318 /* TextColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightSwitch.swift; sourceTree = "<group>"; };
 		17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThicknessSegmentedControl.swift; sourceTree = "<group>"; };
 		17DC24A72ACB2C3F00997318 /* FontThickness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThickness.swift; sourceTree = "<group>"; };
+		17DC24A92ACBDCFF00997318 /* TextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				17DC24A72ACB2C3F00997318 /* FontThickness.swift */,
+				17DC24A92ACBDCFF00997318 /* TextColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */,
 				17DC24802ACACAB100997318 /* LetterViewController.swift in Sources */,
 				17DC24922ACACCFF00997318 /* TabBarController.swift in Sources */,
+				17DC24AA2ACBDCFF00997318 /* TextColor.swift in Sources */,
 				17DC247C2ACACAB100997318 /* AppDelegate.swift in Sources */,
 				17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */,
 				17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */,

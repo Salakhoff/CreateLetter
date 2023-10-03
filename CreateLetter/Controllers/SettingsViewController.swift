@@ -9,6 +9,7 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
     
+    // MARK: -UIOutlets
     private let settingsFontSizeLabel = DescriptionLabel(labelText: "Изменение размера шрифта:")
     private lazy var valueSliderLabel = DescriptionLabel(labelText: "0")
     private lazy var settingsFontSlider = FontSizeSlider()
@@ -31,10 +32,36 @@ final class SettingsViewController: UIViewController {
     private let settingsDarkLightLabel = DescriptionLabel(labelText: "Ночной режим")
     private lazy var settingsDarkLightSwitch = DarkLightSwitch()
     
+    private lazy var colorPickerView = UIPickerView()
+    
+    private lazy var textFieldToolbar: UIToolbar = {
+         let toolbar = UIToolbar()
+         toolbar.barStyle = .default
+         toolbar.isTranslucent = true
+         toolbar.sizeToFit()
+         
+        let cancelButton = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(okButtonTapped))
+         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+         
+         toolbar.setItems([flexibleSpace, cancelButton], animated: false)
+         toolbar.isUserInteractionEnabled = true
+         
+         return toolbar
+     }()
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
+        setDelegate()
+    }
+    
+    // MARK: -Actions
+    @objc private func okButtonTapped() {
+        if colorTextField.isEditing {
+            colorTextField.resignFirstResponder()
+        }
     }
 }
 
@@ -59,6 +86,9 @@ private extension SettingsViewController {
         
         view.addSubview(settingsDarkLightLabel)
         view.addSubview(settingsDarkLightSwitch)
+        
+        colorTextField.inputView = colorPickerView
+        colorTextField.inputAccessoryView = textFieldToolbar
     }
     
     func setConstraints() {
@@ -111,5 +141,42 @@ private extension SettingsViewController {
             settingsDarkLightSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             settingsDarkLightSwitch.centerYAnchor.constraint(equalTo: settingsDarkLightLabel.centerYAnchor),
         ])
+    }
+    
+    func setDelegate() {
+        colorPickerView.delegate = self
+        colorPickerView.dataSource = self
+    }
+}
+
+
+// MARK: -UIPickerViewDataSource
+extension SettingsViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView {
+        case colorPickerView: TextColor.allCases.count
+        default: 0
+        }
+    }
+}
+
+// MARK: - UIPickerViewDelegate
+extension SettingsViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case colorPickerView: TextColor.allCases[row].rawValue
+        default: ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case colorPickerView: self.colorTextField.text = TextColor.allCases[row].rawValue
+        default: break
+        }
     }
 }
