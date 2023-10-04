@@ -69,6 +69,7 @@ final class SettingsViewController: UIViewController {
     
     private func addTarget() {
         settingsFontSlider.addTarget(self, action: #selector(fontSizeSliderValueChanged), for: .valueChanged)
+        settingsDarkLightSwitch.addTarget(self, action: #selector(darkLightSwitchValueChanged), for: .valueChanged)
     }
     
     private func configureInitialSettings() {
@@ -94,6 +95,30 @@ final class SettingsViewController: UIViewController {
     
     @objc private func fontSizeSliderValueChanged(_ sender: UISlider) {
         valueSliderLabel.text = "\(Int(sender.value))"
+    }
+    
+    @objc private func darkLightSwitchValueChanged() {
+        let settingsManager = SettingsManager.shared
+        var updateSettings = settingsManager.loadSettings()
+        updateSettings.nightModeEnabled = settingsDarkLightSwitch.isOn
+        
+        settingsManager.saveSettings(updateSettings)
+        
+        updateAppearanceForNightMode(enable: settingsDarkLightSwitch.isOn)
+    }
+    
+    private func updateAppearanceForNightMode(enable: Bool) {
+        UIView.transition(with: UIApplication.shared.keyWindow!, duration: 0.5, options: .transitionCrossDissolve) {
+            if enable {
+                UIApplication.shared.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .dark
+                }
+            } else {
+                UIApplication.shared.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .light
+                }
+            }
+        }
     }
 }
 
