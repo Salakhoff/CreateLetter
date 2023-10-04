@@ -70,6 +70,7 @@ final class SettingsViewController: UIViewController {
     private func addTarget() {
         settingsFontSlider.addTarget(self, action: #selector(fontSizeSliderValueChanged), for: .valueChanged)
         settingsDarkLightSwitch.addTarget(self, action: #selector(darkLightSwitchValueChanged), for: .valueChanged)
+        fontThicknessSegmentedControl.addTarget(self, action: #selector(fontThicknessSegmentedValueChanged), for: .valueChanged)
     }
     
     // MARK: -Actions
@@ -113,6 +114,19 @@ final class SettingsViewController: UIViewController {
         settingsManager.saveSettings(updateSettings)
         
         updateAppearanceForNightMode(enable: settingsDarkLightSwitch.isOn)
+    }
+    
+    @objc func fontThicknessSegmentedValueChanged(_ sender: UISegmentedControl) {
+        let settingsManager = SettingsManager.shared
+        var updateSettings = settingsManager.loadSettings()
+        
+        let selectedIndex = sender.selectedSegmentIndex
+        let arrayFontThicknessText = FontThicknessText.allCases
+        if let selectedThickness = FontThicknessText(rawValue: arrayFontThicknessText[selectedIndex].rawValue) {
+            updateSettings.fontThinkess = selectedThickness
+        }
+        
+        settingsManager.saveSettings(updateSettings)
     }
     
     private func updateAppearanceForNightMode(enable: Bool) {
