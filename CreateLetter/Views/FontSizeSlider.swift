@@ -22,7 +22,7 @@ final class FontSizeSlider: UISlider {
 extension FontSizeSlider {
     private func setupSlider() {
         minimumValue = 1
-        maximumValue = 100
+        maximumValue = 50
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

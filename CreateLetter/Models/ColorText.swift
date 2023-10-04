@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TextColor: String, CaseIterable {
+enum ColorText: String, CaseIterable {
     case black = "Чёрный"
     case red = "Красный"
     case yellow = "Жёлтый"

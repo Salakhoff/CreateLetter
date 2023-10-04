@@ -20,8 +20,11 @@
 		17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC249F2ACB21F100997318 /* LetterTextView.swift */; };
 		17DC24A22ACB25AA00997318 /* DarkLightSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */; };
 		17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */; };
-		17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A72ACB2C3F00997318 /* FontThickness.swift */; };
-		17DC24AA2ACBDCFF00997318 /* TextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A92ACBDCFF00997318 /* TextColor.swift */; };
+		17DC24A82ACB2C3F00997318 /* FontThicknessText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A72ACB2C3F00997318 /* FontThicknessText.swift */; };
+		17DC24AA2ACBDCFF00997318 /* ColorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC24A92ACBDCFF00997318 /* ColorText.swift */; };
+		17F463052ACD2EF5001123F0 /* AppSettingsText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F463042ACD2EF5001123F0 /* AppSettingsText.swift */; };
+		17F463072ACD2FB6001123F0 /* FontTypeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F463062ACD2FB6001123F0 /* FontTypeText.swift */; };
+		17F4630A2ACD3326001123F0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F463092ACD3326001123F0 /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +43,11 @@
 		17DC249F2ACB21F100997318 /* LetterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterTextView.swift; sourceTree = "<group>"; };
 		17DC24A12ACB25AA00997318 /* DarkLightSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightSwitch.swift; sourceTree = "<group>"; };
 		17DC24A32ACB2AB200997318 /* FontThicknessSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThicknessSegmentedControl.swift; sourceTree = "<group>"; };
-		17DC24A72ACB2C3F00997318 /* FontThickness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThickness.swift; sourceTree = "<group>"; };
-		17DC24A92ACBDCFF00997318 /* TextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextColor.swift; sourceTree = "<group>"; };
+		17DC24A72ACB2C3F00997318 /* FontThicknessText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontThicknessText.swift; sourceTree = "<group>"; };
+		17DC24A92ACBDCFF00997318 /* ColorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorText.swift; sourceTree = "<group>"; };
+		17F463042ACD2EF5001123F0 /* AppSettingsText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsText.swift; sourceTree = "<group>"; };
+		17F463062ACD2FB6001123F0 /* FontTypeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTypeText.swift; sourceTree = "<group>"; };
+		17F463092ACD3326001123F0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 		17DC247A2ACACAB100997318 /* CreateLetter */ = {
 			isa = PBXGroup;
 			children = (
+				17F463082ACD330E001123F0 /* Managers */,
 				17DC248F2ACACCBB00997318 /* App */,
 				17DC24A62ACB2C2E00997318 /* Models */,
 				17DC24952ACAD03700997318 /* Views */,
@@ -120,10 +127,20 @@
 		17DC24A62ACB2C2E00997318 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				17DC24A72ACB2C3F00997318 /* FontThickness.swift */,
-				17DC24A92ACBDCFF00997318 /* TextColor.swift */,
+				17F463042ACD2EF5001123F0 /* AppSettingsText.swift */,
+				17DC24A72ACB2C3F00997318 /* FontThicknessText.swift */,
+				17DC24A92ACBDCFF00997318 /* ColorText.swift */,
+				17F463062ACD2FB6001123F0 /* FontTypeText.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		17F463082ACD330E001123F0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				17F463092ACD3326001123F0 /* SettingsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,15 +214,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DC24992ACAD0F300997318 /* FontSizeSlider.swift in Sources */,
-				17DC24A82ACB2C3F00997318 /* FontThickness.swift in Sources */,
+				17DC24A82ACB2C3F00997318 /* FontThicknessText.swift in Sources */,
+				17F463052ACD2EF5001123F0 /* AppSettingsText.swift in Sources */,
 				17DC24802ACACAB100997318 /* LetterViewController.swift in Sources */,
 				17DC24922ACACCFF00997318 /* TabBarController.swift in Sources */,
-				17DC24AA2ACBDCFF00997318 /* TextColor.swift in Sources */,
+				17DC24AA2ACBDCFF00997318 /* ColorText.swift in Sources */,
+				17F463072ACD2FB6001123F0 /* FontTypeText.swift in Sources */,
 				17DC247C2ACACAB100997318 /* AppDelegate.swift in Sources */,
 				17DC24A02ACB21F100997318 /* LetterTextView.swift in Sources */,
 				17DC24A42ACB2AB200997318 /* FontThicknessSegmentedControl.swift in Sources */,
 				17DC249E2ACB1AB000997318 /* SettingsTextField.swift in Sources */,
 				17DC24972ACAD05300997318 /* DescriptionLabel.swift in Sources */,
+				17F4630A2ACD3326001123F0 /* SettingsManager.swift in Sources */,
 				17DC24942ACACDA400997318 /* SettingsViewController.swift in Sources */,
 				17DC24A22ACB25AA00997318 /* DarkLightSwitch.swift in Sources */,
 				17DC247E2ACACAB100997318 /* SceneDelegate.swift in Sources */,

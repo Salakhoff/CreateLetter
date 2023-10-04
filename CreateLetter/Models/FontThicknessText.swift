@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-enum FontThickness: String, CaseIterable {
-    case thin = "Тонкий"
-    case fat = "Жирный"
+enum FontThicknessText: String, CaseIterable {
+    case normal = "Тонкий"
+    case bold = "Жирный"
 }

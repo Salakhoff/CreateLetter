@@ -11,7 +11,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: -UIOutlets
     private let settingsFontSizeLabel = DescriptionLabel(labelText: "Изменение размера шрифта:")
-    private lazy var valueSliderLabel = DescriptionLabel(labelText: "0")
+    private lazy var valueSliderLabel = DescriptionLabel()
     private lazy var settingsFontSlider = FontSizeSlider()
     
     private let settingsColorLabel = DescriptionLabel(labelText: "Изменение цвета букв")
@@ -20,9 +20,8 @@ final class SettingsViewController: UIViewController {
     private let settingsFontThicknessLabel = DescriptionLabel(labelText: "Регулировка толщины шрифта")
     
     private lazy var fontThicknessSegmentedControl: FontThicknessSegmentedControl = {
-        let items = FontThickness.allCases.map { $0.rawValue }
+        let items = FontThicknessText.allCases.map { $0.rawValue }
         let segmentedControl = FontThicknessSegmentedControl(items: items)
-        segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
     }()
     
@@ -56,6 +55,32 @@ final class SettingsViewController: UIViewController {
         setupView()
         setConstraints()
         setDelegate()
+        addTarget()
+        configureInitialSettings()
+    }
+    
+    private func setDelegate() {
+        colorPickerView.delegate = self
+        colorPickerView.dataSource = self
+        
+        fontPickerView.delegate = self
+        fontPickerView.dataSource = self
+    }
+    
+    private func addTarget() {
+        settingsFontSlider.addTarget(self, action: #selector(fontSizeSliderValueChanged), for: .valueChanged)
+    }
+    
+    private func configureInitialSettings() {
+        let settingsManager = SettingsManager.shared
+        let initialSettings = settingsManager.loadSettings()
+        
+        settingsFontSlider.value = initialSettings.fontSize
+        valueSliderLabel.text = "\(Int(initialSettings.fontSize))"
+        colorTextField.text = initialSettings.fontColor.rawValue
+        fontThicknessSegmentedControl.selectedSegmentIndex = initialSettings.fontThinkess.rawValue == FontThicknessText.normal.rawValue ? 0 : 1
+        fontTextField.text = initialSettings.fontType.rawValue
+        settingsDarkLightSwitch.isOn = initialSettings.nightModeEnabled
     }
     
     // MARK: -Actions
@@ -65,6 +90,10 @@ final class SettingsViewController: UIViewController {
         } else if fontTextField.isEditing {
             fontTextField.resignFirstResponder()
         }
+    }
+    
+    @objc private func fontSizeSliderValueChanged(_ sender: UISlider) {
+        valueSliderLabel.text = "\(Int(sender.value))"
     }
 }
 
@@ -148,14 +177,6 @@ private extension SettingsViewController {
             settingsDarkLightSwitch.centerYAnchor.constraint(equalTo: settingsDarkLightLabel.centerYAnchor),
         ])
     }
-    
-    func setDelegate() {
-        colorPickerView.delegate = self
-        colorPickerView.dataSource = self
-        
-        fontPickerView.delegate = self
-        fontPickerView.dataSource = self
-    }
 }
 
 
@@ -167,8 +188,8 @@ extension SettingsViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
-        case colorPickerView: TextColor.allCases.count
-        case fontPickerView: UIFont.familyNames.count
+        case colorPickerView: ColorText.allCases.count
+        case fontPickerView: FontTypeText.allCases.count
         default: 0
         }
     }
@@ -178,16 +199,16 @@ extension SettingsViewController: UIPickerViewDataSource {
 extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-        case colorPickerView: TextColor.allCases[row].rawValue
-        case fontPickerView: UIFont.familyNames[row]
+        case colorPickerView: ColorText.allCases[row].rawValue
+        case fontPickerView: FontTypeText.allCases[row].rawValue
         default: ""
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case colorPickerView: self.colorTextField.text = TextColor.allCases[row].rawValue
-        case fontPickerView: self.fontTextField.text = UIFont.familyNames[row]
+        case colorPickerView: self.colorTextField.text = ColorText.allCases[row].rawValue
+        case fontPickerView: self.fontTextField.text = FontTypeText.allCases[row].rawValue
         default: break
         }
     }
