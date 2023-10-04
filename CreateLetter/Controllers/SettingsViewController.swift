@@ -72,29 +72,37 @@ final class SettingsViewController: UIViewController {
         settingsDarkLightSwitch.addTarget(self, action: #selector(darkLightSwitchValueChanged), for: .valueChanged)
     }
     
-    private func configureInitialSettings() {
-        let settingsManager = SettingsManager.shared
-        let initialSettings = settingsManager.loadSettings()
-        
-        settingsFontSlider.value = initialSettings.fontSize
-        valueSliderLabel.text = "\(Int(initialSettings.fontSize))"
-        colorTextField.text = initialSettings.fontColor.rawValue
-        fontThicknessSegmentedControl.selectedSegmentIndex = initialSettings.fontThinkess.rawValue == FontThicknessText.normal.rawValue ? 0 : 1
-        fontTextField.text = initialSettings.fontType.rawValue
-        settingsDarkLightSwitch.isOn = initialSettings.nightModeEnabled
-    }
-    
     // MARK: -Actions
     @objc private func okButtonTapped() {
+        let settingsManager = SettingsManager.shared
+        var updateSettings = settingsManager.loadSettings()
+        
         if colorTextField.isEditing {
+            if let selectColorText = colorTextField.text,
+               let selectColor = ColorText(rawValue: selectColorText) {
+                updateSettings.fontColor = selectColor
+            }
             colorTextField.resignFirstResponder()
-        } else if fontTextField.isEditing {
+        }
+        
+        if fontTextField.isEditing {
+            if let selectFontText = fontTextField.text,
+               let selectFont = FontTypeText(rawValue: selectFontText) {
+                updateSettings.fontType = selectFont
+            }
             fontTextField.resignFirstResponder()
         }
+        settingsManager.saveSettings(updateSettings)
     }
     
     @objc private func fontSizeSliderValueChanged(_ sender: UISlider) {
         valueSliderLabel.text = "\(Int(sender.value))"
+        
+        let settingsManager = SettingsManager.shared
+        var updateSettings = settingsManager.loadSettings()
+        updateSettings.fontSize = sender.value
+        
+        settingsManager.saveSettings(updateSettings)
     }
     
     @objc private func darkLightSwitchValueChanged() {
@@ -202,7 +210,20 @@ private extension SettingsViewController {
             settingsDarkLightSwitch.centerYAnchor.constraint(equalTo: settingsDarkLightLabel.centerYAnchor),
         ])
     }
+    
+    private func configureInitialSettings() {
+        let settingsManager = SettingsManager.shared
+        let initialSettings = settingsManager.loadSettings()
+        
+        settingsFontSlider.value = initialSettings.fontSize
+        valueSliderLabel.text = "\(Int(initialSettings.fontSize))"
+        colorTextField.text = initialSettings.fontColor.rawValue
+        fontThicknessSegmentedControl.selectedSegmentIndex = initialSettings.fontThinkess.rawValue == FontThicknessText.normal.rawValue ? 0 : 1
+        fontTextField.text = initialSettings.fontType.rawValue
+        settingsDarkLightSwitch.isOn = initialSettings.nightModeEnabled
+    }
 }
+
 
 
 // MARK: -UIPickerViewDataSource
