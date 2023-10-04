@@ -10,11 +10,16 @@ import UIKit
 final class LetterViewController: UIViewController {
     
     private lazy var letterTextView = LetterTextView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateTextWithSettings()
     }
 }
 
@@ -35,6 +40,24 @@ private extension LetterViewController {
             letterTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             letterTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
+    }
+    
+    func updateTextWithSettings() {
+        let settingsManager = SettingsManager.shared
+        let savedSettings = settingsManager.loadSettings()
+        
+        let fontName = savedSettings.fontType.rawValue
+        let fontSize = CGFloat(savedSettings.fontSize)
+        
+        var font: UIFont
+        if savedSettings.fontThinkess == .bold {
+            font = UIFont(descriptor: UIFontDescriptor(name: fontName, size: fontSize).withSymbolicTraits(.traitBold) ?? UIFontDescriptor(name: fontName, size: fontSize), size: fontSize)
+        } else {
+            font = UIFont(descriptor: UIFontDescriptor(name: fontName, size: fontSize), size: fontSize)
+        }
+        
+        letterTextView.font = font
+        letterTextView.textColor = savedSettings.fontColor.uiColor()
     }
 }
 
