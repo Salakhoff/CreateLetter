@@ -48,7 +48,7 @@ final class SettingsViewController: UIViewController {
         
         return toolbar
     }()
-
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -58,6 +58,7 @@ final class SettingsViewController: UIViewController {
         setDelegate()
         addTarget()
         configureInitialSettings()
+        setupTextFields()
     }
     
     private func setDelegate() {
@@ -84,6 +85,7 @@ final class SettingsViewController: UIViewController {
                let selectColor = ColorText(rawValue: selectColorText) {
                 updateSettings.fontColor = selectColor
             }
+            settingsManager.saveSettings(updateSettings)
             colorTextField.resignFirstResponder()
         }
         
@@ -92,9 +94,9 @@ final class SettingsViewController: UIViewController {
                let selectFont = FontTypeText(rawValue: selectFontText) {
                 updateSettings.fontType = selectFont
             }
+            settingsManager.saveSettings(updateSettings)
             fontTextField.resignFirstResponder()
         }
-        settingsManager.saveSettings(updateSettings)
     }
     
     @objc private func fontSizeSliderValueChanged(_ sender: UISlider) {
@@ -224,6 +226,25 @@ private extension SettingsViewController {
             settingsDarkLightSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             settingsDarkLightSwitch.centerYAnchor.constraint(equalTo: settingsDarkLightLabel.centerYAnchor),
         ])
+        
+        
+    }
+    private func setupTextFields() {
+        let settingsManager = SettingsManager.shared
+        var currentColor = settingsManager.loadSettings()
+        
+        
+        if let currentColorText = ColorText(rawValue: currentColor.fontColor.rawValue) {
+            if let row = ColorText.allCases.firstIndex(of: currentColorText) {
+                colorPickerView.selectRow(row, inComponent: 0, animated: false)
+            }
+        }
+        
+        if let currentFontTypeText = FontTypeText(rawValue: currentColor.fontType.rawValue) {
+            if let row = FontTypeText.allCases.firstIndex(of: currentFontTypeText) {
+                fontPickerView.selectRow(row, inComponent: 0, animated: false)
+            }
+        }
     }
     
     private func configureInitialSettings() {

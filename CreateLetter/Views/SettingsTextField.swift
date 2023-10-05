@@ -25,6 +25,7 @@ extension SettingsTextField {
         layer.borderColor = UIColor.systemGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 5
+        isContextMenuInteractionEnabled = false
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

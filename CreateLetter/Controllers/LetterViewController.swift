@@ -30,6 +30,7 @@ final class LetterViewController: UIViewController {
         setupView()
         setConstraints()
         workWithNotificationCenter()
+        configureInitialSettings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +88,12 @@ private extension LetterViewController {
         
         letterTextView.font = font
         letterTextView.textColor = savedSettings.fontColor.uiColor()
+    }
+    
+    private func configureInitialSettings() {
+        let settingsManager = SettingsManager.shared
+        let initialSettings = settingsManager.loadSettings()
+        letterTextView.text = initialSettings.text
     }
 }
 
