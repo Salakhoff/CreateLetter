@@ -10,6 +10,20 @@ import UIKit
 final class LetterViewController: UIViewController {
     
     private lazy var letterTextView = LetterTextView()
+    private lazy var textViewToolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        
+        let cancelButton = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(okButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([flexibleSpace, cancelButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        return toolbar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +35,14 @@ final class LetterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateTextWithSettings()
+    }
+    
+    @objc private func okButtonTapped() {
+        let settingsManager = SettingsManager.shared
+        var updateSettings = settingsManager.loadSettings()
+        
+        letterTextView.resignFirstResponder()
+        settingsManager.saveSettings(updateSettings)
     }
     
     deinit {
@@ -36,6 +58,7 @@ private extension LetterViewController {
         navigationItem.title = "Письмо"
         
         view.addSubview(letterTextView)
+        letterTextView.inputAccessoryView = textViewToolbar
     }
     
     func setConstraints() {
@@ -66,7 +89,7 @@ private extension LetterViewController {
     }
 }
 
-//MARK: -NotificationCenter
+// MARK: -NotificationCenter
 extension LetterViewController {
     private func workWithNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
