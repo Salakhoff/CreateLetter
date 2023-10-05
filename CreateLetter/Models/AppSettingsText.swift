@@ -13,4 +13,5 @@ struct AppSettingsText {
     var fontColor: ColorText
     var fontType: FontTypeText
     var nightModeEnabled: Bool
+    var text: String
 }

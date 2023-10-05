@@ -40,9 +40,10 @@ final class LetterViewController: UIViewController {
     @objc private func okButtonTapped() {
         let settingsManager = SettingsManager.shared
         var updateSettings = settingsManager.loadSettings()
-        
-        letterTextView.resignFirstResponder()
+        updateSettings.text = letterTextView.text
+       
         settingsManager.saveSettings(updateSettings)
+        letterTextView.resignFirstResponder()
     }
     
     deinit {

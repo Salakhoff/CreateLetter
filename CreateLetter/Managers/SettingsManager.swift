@@ -21,7 +21,8 @@ class SettingsManager {
             "fontColor": ColorText.black.rawValue,
             "fontWeight": FontThicknessText.normal.rawValue,
             "fontName": FontTypeText.helvetica.rawValue,
-            "nightModeEnabled": false
+            "nightModeEnabled": false,
+            "text": ""
         ])
     }
     
@@ -31,6 +32,7 @@ class SettingsManager {
         userDefaults.set(settings.fontThinkess.rawValue, forKey: "fontWeight")
         userDefaults.set(settings.fontType.rawValue, forKey: "fontName")
         userDefaults.set(settings.nightModeEnabled, forKey: "nightModeEnabled")
+        userDefaults.set(settings.text, forKey: "text")
         userDefaults.synchronize()
     }
     
@@ -40,6 +42,7 @@ class SettingsManager {
         let fontThicknessRawValue = userDefaults.string(forKey: "fontWeight") ?? FontThicknessText.normal.rawValue
         let fontNameRawValue = userDefaults.string(forKey: "fontName") ?? FontTypeText.helvetica.rawValue
         let nightModeEnabled = userDefaults.bool(forKey: "nightModeEnabled")
+        let text = userDefaults.string(forKey: "text") ?? ""
         
         let fontColor = ColorText(rawValue: fontColorRawValue) ?? .black
         let fontThickness = FontThicknessText(rawValue: fontThicknessRawValue) ?? .normal
@@ -50,7 +53,8 @@ class SettingsManager {
             fontThinkess: fontThickness,
             fontColor: fontColor,
             fontType: fontName,
-            nightModeEnabled: nightModeEnabled
+            nightModeEnabled: nightModeEnabled,
+            text: text
         )
     }
 }
