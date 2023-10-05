@@ -24,6 +24,8 @@ extension LetterTextView {
         layer.borderColor = UIColor.systemGray.cgColor
         layer.borderWidth = 5
         layer.cornerRadius = 5
+        bounces = false
+        alwaysBounceVertical = false
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
