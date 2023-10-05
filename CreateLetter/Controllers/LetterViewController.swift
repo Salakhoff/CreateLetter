@@ -61,6 +61,8 @@ private extension LetterViewController {
         
         view.addSubview(letterTextView)
         letterTextView.inputAccessoryView = textViewToolbar
+        
+        setupShareButton()
     }
     
     func setConstraints() {
@@ -94,6 +96,18 @@ private extension LetterViewController {
         let settingsManager = SettingsManager.shared
         let initialSettings = settingsManager.loadSettings()
         letterTextView.text = initialSettings.text
+    }
+    
+    private func setupShareButton() {
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction))
+        navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    @objc func shareAction() {
+        if let textToShare = letterTextView.text {
+            let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+            self.present(activityViewController, animated: true)
+        }
     }
 }
 
