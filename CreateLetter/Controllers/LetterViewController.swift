@@ -15,11 +15,16 @@ final class LetterViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraints()
+        workWithNotificationCenter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateTextWithSettings()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -58,6 +63,30 @@ private extension LetterViewController {
         
         letterTextView.font = font
         letterTextView.textColor = savedSettings.fontColor.uiColor()
+    }
+}
+
+//MARK: -NotificationCenter
+extension LetterViewController {
+    private func workWithNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.size.height
+            
+            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+            letterTextView.contentInset = contentInsets
+            letterTextView.scrollIndicatorInsets = contentInsets
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        let contentInsets = UIEdgeInsets.zero
+        letterTextView.contentInset = contentInsets
+        letterTextView.scrollIndicatorInsets = contentInsets
     }
 }
 
